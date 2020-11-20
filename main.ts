@@ -5,12 +5,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . 7 7 7 7 7 7 . . . . . 
-        . . . . . 7 7 7 7 7 7 . . . . . 
-        . . . . . 7 7 7 7 7 7 . . . . . 
-        . . . . . 7 7 7 7 7 7 . . . . . 
-        . . . . . 7 7 7 7 7 7 . . . . . 
-        . . . . . 7 7 7 7 7 7 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -18,6 +18,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, Ducky, 100, 0)
 })
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeScoreBy(10)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeLifeBy(-1)
+})
+let Sharky: Sprite = null
 let projectile: Sprite = null
 let Ducky: Sprite = null
 Ducky = sprites.create(img`
@@ -39,3 +48,31 @@ Ducky = sprites.create(img`
     . . . c c c c c c c c b b . . . 
     `, SpriteKind.Player)
 Ducky.setFlag(SpriteFlag.StayInScreen, true)
+info.setLife(3)
+scene.setBackgroundColor(8)
+controller.moveSprite(Ducky)
+game.onUpdateInterval(1000, function () {
+    Sharky = sprites.create(img`
+        .............ccfff..............
+        ...........ccddbcf..............
+        ..........ccddbbf...............
+        ..........fccbbcf...............
+        .....fffffccccccff.........ccc..
+        ...ffbbbbbbbcbbbbcfff....ccbbc..
+        ..fbbbbbbbbcbcbbbbcccff.cdbbc...
+        ffbbbbbbffbbcbcbbbcccccfcdbbf...
+        fbcbbb11ff1bcbbbbbcccccffbbf....
+        fbbb11111111bbbbbcccccccbbcf....
+        .fb11133cc11bbbbcccccccccccf....
+        ..fccc31c111bbbcccccbdbffbbcf...
+        ...fc13c111cbbbfcddddcc..fbbf...
+        ....fccc111fbdbbccdcc.....fbbf..
+        ........ccccfcdbbcc........fff..
+        .............fffff..............
+        `, SpriteKind.Enemy)
+    Sharky.setVelocity(-100, 0)
+    Sharky.setPosition(180, randint(0, 120))
+})
+game.onUpdateInterval(1000, function () {
+    info.changeScoreBy(1)
+})
