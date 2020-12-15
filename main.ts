@@ -1,6 +1,10 @@
 namespace SpriteKind {
     export const stronger_enemy = SpriteKind.create()
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeLifeBy(-2)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -23,7 +27,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
     otherSprite.destroy()
-    info.changeLifeBy(-2)
+    info.changeScoreBy(20)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
