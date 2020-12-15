@@ -1,3 +1,10 @@
+namespace SpriteKind {
+    export const stronger_enemy = SpriteKind.create()
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeLifeBy(-1)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -23,7 +30,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.changeScoreBy(10)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    null.destroy()
     info.changeLifeBy(-1)
 })
 let Sharky: Sprite = null
@@ -70,7 +77,7 @@ game.onUpdateInterval(2000, function () {
         . . f 2 2 2 b b b c f . . . . . 
         . . . f f f f f f f . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Enemy)
+        `, SpriteKind.stronger_enemy)
     Batty.setVelocity(-100, 0)
     Batty.setPosition(180, randint(0, 120))
 })
