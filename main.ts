@@ -1,10 +1,6 @@
 namespace SpriteKind {
     export const stronger_enemy = SpriteKind.create()
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
-    otherSprite.destroy()
-    info.changeLifeBy(-1)
-})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
@@ -27,7 +23,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
     otherSprite.destroy()
-    info.changeScoreBy(20)
+    info.changeLifeBy(-2)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -60,7 +56,7 @@ Ducky = sprites.create(img`
     . . . c c c c c c c c b b . . . 
     `, SpriteKind.Player)
 Ducky.setFlag(SpriteFlag.StayInScreen, true)
-info.setLife(3)
+info.setLife(5)
 scene.setBackgroundColor(8)
 controller.moveSprite(Ducky)
 game.onUpdateInterval(2000, function () {
