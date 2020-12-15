@@ -1,5 +1,5 @@
 {
-    "name": "Game",
+    "name": "Duck vs Shark (and bat)",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -15,7 +15,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.2.10",
+        "target": "1.2.16",
         "targetId": "arcade"
     },
     "supportedTargets": [
