@@ -25,10 +25,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, Ducky, 100, 0)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
-    otherSprite.destroy()
-    info.changeScoreBy(20)
-})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeScoreBy(10)
@@ -109,4 +105,7 @@ game.onUpdateInterval(1000, function () {
         `, SpriteKind.Enemy)
     Sharky.setVelocity(-100, 0)
     Sharky.setPosition(180, randint(0, 120))
+})
+forever(function () {
+    music.playMelody("C5 C B C A C G C ", 120)
 })
