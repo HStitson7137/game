@@ -25,12 +25,16 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, Ducky, 100, 0)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeScoreBy(20)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeScoreBy(10)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    null.destroy()
+    otherSprite.destroy()
     info.changeLifeBy(-1)
 })
 let Sharky: Sprite = null
