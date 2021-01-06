@@ -107,5 +107,5 @@ game.onUpdateInterval(1000, function () {
     Sharky.setPosition(180, randint(0, 120))
 })
 forever(function () {
-    music.playMelody("C5 C B C A C G C ", 120)
+    music.playMelody("C5 C B C A C B C ", 120)
 })
