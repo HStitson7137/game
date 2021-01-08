@@ -2,6 +2,24 @@ namespace SpriteKind {
     export const stronger_enemy = SpriteKind.create()
     export const Friend = SpriteKind.create()
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile2 = sprites.createProjectileFromSprite(img`
+        . . 4 4 4 . . . . 4 4 4 . . . . 
+        . 4 5 5 5 e . . e 5 5 5 4 . . . 
+        4 5 5 5 5 5 e e 5 5 5 5 5 4 . . 
+        4 5 5 4 4 5 5 5 5 4 4 5 5 4 . . 
+        e 5 4 4 5 5 5 5 5 5 4 4 5 e . . 
+        . e e 5 5 5 5 5 5 5 5 e e . . . 
+        . . e 5 f 5 5 5 5 f 5 e . . . . 
+        . . f 5 5 5 4 4 5 5 5 f . . f f 
+        . . f 4 5 5 f f 5 5 6 f . f 5 f 
+        . . . f 6 6 6 6 6 6 4 4 f 5 5 f 
+        . . . f 4 5 5 5 5 5 5 4 4 5 f . 
+        . . . f 5 5 5 5 5 4 5 5 f f . . 
+        . . . f 5 f f f 5 f f 5 f . . . 
+        . . . f f . . f f . . f f . . . 
+        `, Princess, randint(-100, 100), randint(-100, 100))
+})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeLifeBy(-2)
@@ -41,6 +59,8 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let Sharky: Sprite = null
 let Batty: Sprite = null
 let projectile: Sprite = null
+let projectile2: Sprite = null
+let Princess: Sprite = null
 let Warrior: Sprite = null
 Warrior = sprites.create(img`
     . . . . . . f f f f . . . . . . 
@@ -64,7 +84,7 @@ Warrior.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
 scene.setBackgroundColor(8)
 controller.moveSprite(Warrior)
-let Princess = sprites.create(img`
+Princess = sprites.create(img`
     . . . . . f f 4 4 f f . . . . . 
     . . . . f 5 4 5 5 4 5 f . . . . 
     . . . f e 4 5 5 5 5 4 e f . . . 
