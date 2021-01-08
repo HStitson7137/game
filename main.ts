@@ -2,26 +2,6 @@ namespace SpriteKind {
     export const stronger_enemy = SpriteKind.create()
     export const Friend = SpriteKind.create()
 }
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    POO = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . e e . . . . . . . 
-        . . . . . . e e e e . . . . . . 
-        . . . . . 1 1 1 1 1 1 . . . . . 
-        . . . . e 1 f 1 1 f 1 e . . . . 
-        . . . e e 1 f 1 1 f 1 e e . . . 
-        . . e e e 1 f 1 1 f 1 e e e . . 
-        . e e e e 1 1 1 1 1 1 e e e e . 
-        . e e e e e e e e e e e e e e . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, Warrior, 0, 0)
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeLifeBy(-2)
@@ -46,9 +26,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, Warrior, 100, 0)
 })
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
-    POO.destroy()
-})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeScoreBy(20)
@@ -64,8 +41,25 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let Sharky: Sprite = null
 let Batty: Sprite = null
 let projectile: Sprite = null
-let POO: Sprite = null
 let Warrior: Sprite = null
+Warrior = sprites.create(img`
+    . . . . . . f f f f . . . . . . 
+    . . . . f f f 2 2 f f f . . . . 
+    . . . f f f 2 2 2 2 f f f . . . 
+    . . f f f e e e e e e f f f . . 
+    . . f f e 2 2 2 2 2 2 e e f . . 
+    . . f e 2 f f f f f f 2 e f . . 
+    . . f f f f e e e e f f f f . . 
+    . f f e f b f 4 4 f b f e f f . 
+    . f e e 4 1 f d d f 1 4 e e f . 
+    . . f f f f d d d d d e e f . . 
+    . f d d d d f 4 4 4 e e f . . . 
+    . f b b b b f 2 2 2 2 f 4 e . . 
+    . f b b b b f 2 2 2 2 f d 4 . . 
+    . . f c c f 4 5 5 4 4 f 4 4 . . 
+    . . . f f f f f f f f . . . . . 
+    . . . . . f f . . f f . . . . . 
+    `, SpriteKind.Player)
 Warrior.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
 scene.setBackgroundColor(8)
