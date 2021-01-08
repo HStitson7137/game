@@ -2,16 +2,16 @@ namespace SpriteKind {
     export const stronger_enemy = SpriteKind.create()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile2 = sprites.createProjectileFromSprite(img`
+    POO = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . e e . . . . . . . 
         . . . . . . e e e e . . . . . . 
-        . . . . . e e e e e e . . . . . 
-        . . . . e e e e e e e e . . . . 
-        . . . e e e e e e e e e e . . . 
-        . . e e e e e e e e e e e e . . 
+        . . . . . 1 1 1 1 1 1 . . . . . 
+        . . . . e 1 f 1 1 f 1 e . . . . 
+        . . . e e 1 f 1 1 f 1 e e . . . 
+        . . e e e 1 f 1 1 f 1 e e e . . 
+        . e e e e 1 1 1 1 1 1 e e e e . 
         . e e e e e e e e e e e e e e . 
-        . e e e e e e e e e e e e e e . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -19,7 +19,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, Ducky, -100, 0)
+        `, Ducky, 0, 0)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -45,6 +45,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, Ducky, 100, 0)
 })
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
+    POO.destroy()
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeScoreBy(20)
@@ -60,7 +63,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
 let Sharky: Sprite = null
 let Batty: Sprite = null
 let projectile: Sprite = null
-let projectile2: Sprite = null
+let POO: Sprite = null
 let Ducky: Sprite = null
 Ducky = sprites.create(img`
     . . . . . . . . . . . . . . . . 
