@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const stronger_enemy = SpriteKind.create()
+    export const Friend = SpriteKind.create()
 }
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     POO = sprites.createProjectileFromSprite(img`
@@ -87,6 +88,25 @@ Ducky.setFlag(SpriteFlag.StayInScreen, true)
 info.setLife(5)
 scene.setBackgroundColor(8)
 controller.moveSprite(Ducky)
+let Mini_Ducky = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . b 5 5 b . . . 
+    . . . . . . b b b b b b . . . . 
+    . . . . . b b 5 5 5 5 5 b . . . 
+    . b b b b b 5 5 5 5 5 5 5 b . . 
+    . b d 5 b 5 5 5 5 5 5 5 5 b . . 
+    . . b 5 5 b 5 d 1 f 5 d 4 f . . 
+    . . b d 5 5 b 1 f f 5 4 4 c . . 
+    b b d b 5 5 5 d f b 4 4 4 4 b . 
+    b d d c d 5 5 b 5 4 4 4 4 4 4 b 
+    c d d d c c b 5 5 5 5 5 5 5 b . 
+    c b d d d d d 5 5 5 5 5 5 5 b . 
+    . c d d d d d d 5 5 5 5 5 d b . 
+    . . c b d d d d d 5 5 5 b b . . 
+    . . . c c c c c c c c b b . . . 
+    `, SpriteKind.Friend)
+Mini_Ducky.follow(Ducky)
 game.onUpdateInterval(2000, function () {
     Batty = sprites.create(img`
         . . f f f . . . . . . . . . . . 
