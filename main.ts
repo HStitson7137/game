@@ -44,9 +44,17 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `, Warrior, 100, 0)
 })
+sprites.onOverlap(SpriteKind.Friend, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeLifeBy(-1)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
     info.changeScoreBy(20)
+})
+sprites.onOverlap(SpriteKind.Friend, SpriteKind.stronger_enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    info.changeLifeBy(-2)
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy()
@@ -81,7 +89,7 @@ Warrior = sprites.create(img`
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
 Warrior.setFlag(SpriteFlag.StayInScreen, true)
-info.setLife(5)
+info.setLife(7.5)
 scene.setBackgroundColor(8)
 controller.moveSprite(Warrior)
 Princess = sprites.create(img`

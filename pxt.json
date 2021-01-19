@@ -1,19 +1,18 @@
 {
-    "name": "Warrior vs Shark (and bat)",
-    "description": "",
+    "name": "game",
     "dependencies": {
         "device": "*"
     },
     "files": [
+        ".vscode/settings.json",
+        ".vscode/tasks.json",
+        "README.md",
         "main.blocks",
         "main.ts",
-        "README.md",
+        "test.ts",
         "tilemap.g.jres",
         "tilemap.g.ts",
-        null
-    ],
-    "testFiles": [
-        "test.ts"
+        "tsconfig.json"
     ],
     "targetVersions": {
         "target": "1.2.16",
