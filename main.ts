@@ -109,6 +109,7 @@ Princess = sprites.create(img`
     . . . f f 1 d 1 d 1 d f f . . . 
     . . . . . f f b b f f . . . . . 
     `, SpriteKind.Friend)
+Princess.setFlag(SpriteFlag.StayInScreen, true)
 Princess.follow(Warrior, 75)
 game.onUpdateInterval(2000, function () {
     Batty = sprites.create(img`
