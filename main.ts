@@ -161,3 +161,8 @@ game.onUpdateInterval(1000, function () {
 forever(function () {
     music.playMelody("E C B C A C B C ", 500)
 })
+forever(function () {
+    if (info.score() >= 10000) {
+        game.over(true)
+    }
+})
