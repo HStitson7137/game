@@ -17,7 +17,7 @@
         "images.g.ts"
     ],
     "targetVersions": {
-        "target": "1.4.41",
+        "target": "1.6.24",
         "targetId": "arcade"
     },
     "supportedTargets": [
